@@ -45,6 +45,7 @@ Decrypted: Hello, World!
 
 HTML: For the structure of the interface.
 CSS: For basic styling and layout.
+
 JavaScript: For encryption and decryption logic.
 
 📧 Contact
