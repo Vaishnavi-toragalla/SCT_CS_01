@@ -35,7 +35,9 @@ The result will be displayed below the buttons.
 
 
 Input Message: Hello, World!
+
 Shift Value: 3
+
 Output:
 Encrypted: Khoor, Zruog!
 Decrypted: Hello, World!
