@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caesar Cipher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Caesar Cipher</h1>
+        <label for="message">Enter your message:</label>
+        <textarea id="message" rows="4"></textarea>
+
+        <label for="shift">Enter shift value:</label>
+        <input type="number" id="shift" />
+
+        <button onclick="encryptMessage()">Encrypt</button>
+        <button onclick="decryptMessage()">Decrypt</button>
+
+        <h3>Output:</h3>
+        <p id="output"></p>
+    </div>
+
+    <script>
+        function caesarCipher(text, shift, encrypt = true) {
+            let result = "";
+            shift = encrypt ? shift : -shift;
+            for (let i = 0; i < text.length; i++) {
+                let char = text[i];
+                if (char.match(/[a-z]/i)) {
+                    let charCode = text.charCodeAt(i);
+                    let base = charCode >= 65 && charCode <= 90 ? 65 : 97;
+                    result += String.fromCharCode(((charCode - base + shift) % 26 + 26) % 26 + base);
+                } else {
+                    result += char;
+                }
+            }
+            return result;
+        }
+
+        function encryptMessage() {
+            const message = document.getElementById("message").value;
+            const shift = parseInt(document.getElementById("shift").value);
+            const output = caesarCipher(message, shift, true);
+            document.getElementById("output").innerText = output;
+        }
+
+        function decryptMessage() {
+            const message = document.getElementById("message").value;
+            const shift = parseInt(document.getElementById("shift").value);
+            const output = caesarCipher(message, shift, false);
+            document.getElementById("output").innerText = output;
+        }
+    </script>
+</body>
+</html>
